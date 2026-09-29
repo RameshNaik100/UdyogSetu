@@ -7,7 +7,8 @@ import {
 } from 'lucide-react';
 
 ChartJS.register(ArcElement, BarElement, CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Filler);
-const API = async (path, options={}) => { const r=await fetch(path,{headers:{'Content-Type':'application/json'},...options}); if(!r.ok) throw new Error((await r.json()).error||'Request failed'); return r.json(); };
+const API_BASE = import.meta.env.VITE_API_URL || '';
+const API = async (path, options={}) => { const r=await fetch(`${API_BASE}${path}`,{headers:{'Content-Type':'application/json'},...options}); if(!r.ok) throw new Error((await r.json()).error||'Request failed'); return r.json(); };
 const DemoContext=createContext(null);
 const useDemo=()=>useContext(DemoContext);
 
@@ -137,3 +138,5 @@ function Audit(){const {data}=useDemo();const rows=data?.auditLogs||[];return <S
 
 function App(){const {loading}=useDemo()||{}; return <Routes><Route path="/" element={<Landing/>}/><Route path="/login" element={<Login/>}/><Route path="/app/dashboard" element={<ApplicantDashboard/>}/><Route path="/app/profile" element={<BusinessProfile/>}/><Route path="/app/checklist" element={<Checklist/>}/><Route path="/app/documents" element={<Documents/>}/><Route path="/app/risk" element={<ApplicantRisk/>}/><Route path="/app/tracking" element={<Tracking/>}/><Route path="/app/inspections" element={<Inspections/>}/><Route path="/app/schemes" element={<Schemes/>}/><Route path="/app/assistant" element={<Assistant/>}/><Route path="/app/notifications" element={<Notifications/>}/><Route path="/app/details" element={<ApplicationDetails/>}/><Route path="/dept/overview" element={<DepartmentOverview/>}/><Route path="/dept/queue" element={<DepartmentQueue/>}/><Route path="/dept/review" element={<ApplicationReview/>}/><Route path="/dept/risk" element={<RiskQueue/>}/><Route path="/dept/inspections" element={<Inspections admin/>}/><Route path="/dept/sla" element={<SLAControlTower/>}/><Route path="/dept/analytics" element={<Analytics/>}/><Route path="/dept/schemes" element={<Schemes admin/>}/><Route path="/dept/audit" element={<Audit/>}/><Route path="*" element={<Navigate to="/"/>}/></Routes>}
 export default function Root(){return <DemoProvider><App/></DemoProvider>}
+
+
