@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #172b27;
+  background: #f3f6f4;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at 14% -10%, rgba(193, 226, 207, .52), transparent 29rem),
+    linear-gradient(180deg, #f8faf9 0%, #f2f6f4 52%, #f5f7f6 100%);
+}
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(16, 128, 91, .28); outline-offset: 2px; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c2d0ca; border: 2px solid #f4f7f5; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #9fb3a9; }
+.chart-wrap canvas { max-height: 280px !important; }
+
+/* Enterprise government-tech surface language */
+@layer components {
+  .mc-page-bg { position: relative; }
+  .mc-page-bg::before { content: ""; position: fixed; pointer-events: none; inset: 0; z-index: -1; opacity: .32; background-image: linear-gradient(rgba(16, 43, 39, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(16, 43, 39, .025) 1px, transparent 1px); background-size: 32px 32px; mask-image: linear-gradient(to bottom, #000, transparent 70%); }
+  .mc-card { border: 1px solid rgba(203, 216, 209, .9); box-shadow: 0 1px 2px rgba(13, 39, 31, .025), 0 12px 28px rgba(13, 39, 31, .035); }
+  .mc-card-interactive { transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
+  .mc-card-interactive:hover { transform: translateY(-2px); border-color: #b5d5c5; box-shadow: 0 8px 26px rgba(13, 67, 50, .08); }
+  .mc-section-label { letter-spacing: .15em; }
+  .mc-data-cell { border-bottom: 1px solid #edf2ef; }
+  .mc-kicker-line { display: inline-flex; align-items: center; gap: .5rem; }
+  .mc-kicker-line::before { content: ""; width: 1.5rem; height: 2px; border-radius: 99px; background: #18845d; }
+  .mc-progress-track { background: linear-gradient(90deg, #e7eeea, #f1f5f3); box-shadow: inset 0 1px 1px rgba(19, 51, 42, .06); }
+  .mc-progress-fill { background: linear-gradient(90deg, #087553, #17a06f); box-shadow: 0 1px 5px rgba(10, 126, 88, .25); }
+  .mc-sla-risk { background: linear-gradient(90deg, #f59e0b, #f97316); box-shadow: 0 1px 5px rgba(234, 88, 12, .23); }
+  .mc-sla-breach { background: linear-gradient(90deg, #dc2626, #ef4444); box-shadow: 0 1px 5px rgba(220, 38, 38, .22); }
+  .mc-nav-active { box-shadow: inset 3px 0 0 #68d391, 0 8px 18px rgba(0, 0, 0, .12); }
+  .mc-dot-grid { background-image: radial-gradient(rgba(15, 118, 110, .19) 1px, transparent 1px); background-size: 12px 12px; }
+  .mc-fade-in { animation: mcFadeIn .35s ease-out both; }
+  .mc-rise-in { animation: mcRiseIn .42s cubic-bezier(.22,.9,.34,1) both; }
+  .mc-delay-1 { animation-delay: .06s; }
+  .mc-delay-2 { animation-delay: .12s; }
+  .mc-delay-3 { animation-delay: .18s; }
+}
+@keyframes mcFadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes mcRiseIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
