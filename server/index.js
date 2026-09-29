@@ -256,6 +256,7 @@ app.get('/api/audit/:applicationId',(req,res)=>res.json(auditLogs.filter(a=>a.ap
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(UdyogSetu prototype API running on port );
+  console.log(`UdyogSetu prototype API running on port ${PORT}`);
 });
+
 
