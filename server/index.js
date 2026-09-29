@@ -253,4 +253,9 @@ app.get('/api/notifications',(req,res)=>res.json(notifications.filter(n=>!req.qu
 app.post('/api/notifications/:id/read',(req,res)=>{const n=notifications.find(x=>x.id===req.params.id);if(!n)return res.status(404).json({error:'Not found'});n.read=true;res.json(n)});
 app.get('/api/audit/:applicationId',(req,res)=>res.json(auditLogs.filter(a=>a.applicationId===req.params.applicationId)));
 
-app.listen(3001,'0.0.0.0',()=>console.log('UdyogSetu prototype API running on http://0.0.0.0:3001'));
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(UdyogSetu prototype API running on port );
+});
+
